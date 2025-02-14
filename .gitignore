@@ -54,3 +54,8 @@ dkms.conf
 #PlatformIO
 .pio
 .vscode*
+
+#Project specific
+esp32_ota_ex/sdkconfig.esp32-c6-devkitm-1.old
+simple_AP/sdkconfig.esp32-c6-devkitm-1.old
+
