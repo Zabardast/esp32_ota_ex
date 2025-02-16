@@ -7,7 +7,7 @@
 #define BUFFER_SIZE 1024
 
 
-void tcp_send(void *data)
+void tcp_send()
 {
     ESP_LOGI(TCP_CLIENT, "tcp_send() called");
     int client_fd;
@@ -18,7 +18,7 @@ void tcp_send(void *data)
     memset(buf, 0, BUFFER_SIZE);
     buf[BUFFER_SIZE - 1] = '\0';
 
-    strncpy(buf, "hello world!", BUFFER_SIZE - 1);
+    strncpy(buf, "Hello World!", 13);
 
     printf("tcp_send: %s\n", buf);
 
