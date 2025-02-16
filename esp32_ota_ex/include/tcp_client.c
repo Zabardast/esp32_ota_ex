@@ -6,6 +6,7 @@
 
 #define BUFFER_SIZE 1024
 
+
 void tcp_send(void *data)
 {
     ESP_LOGI(TCP_CLIENT, "tcp_send() called");
@@ -42,6 +43,16 @@ void tcp_send(void *data)
     ssize_t sent_size = send(client_fd, buf, BUFFER_SIZE, 0);
     if(sent_size > 0)
         ESP_LOGI(TCP_CLIENT, "send %i bytes", sent_size);
+
+    memset(buf, 0, BUFFER_SIZE);
+    buf[BUFFER_SIZE - 1] = '\0';
+
+    int byte_rcvd = recv(client_fd, buf, BUFFER_SIZE-1, 0);
+    
+    if(byte_rcvd == -1)
+        printf("error %s\n", strerror(errno));
+
+    printf("recv message : %s\n", buf);
 
     vTaskDelete(NULL);
 }
