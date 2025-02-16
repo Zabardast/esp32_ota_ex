@@ -1,5 +1,4 @@
 
-#include "keys.c"
 
 #include "nvs_flash.h"
 #include "esp_wifi.h"
@@ -8,6 +7,12 @@
 #include <string.h>
 
 static const char *STA_WIFI = "wifi STA";
+static const char *TCP_CLIENT = "TCP client";
+
+#include "keys.c"
+#include "tcp_client.c"
+
+
 
 void station_got_ip(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
 {
@@ -16,6 +21,8 @@ void station_got_ip(void* arg, esp_event_base_t event_base, int32_t event_id, vo
         ip_event_got_ip_t* ip_event_data = (ip_event_got_ip_t*) event_data;
         
         ESP_LOGI(STA_WIFI, "new ip : "IPSTR , IP2STR(&ip_event_data->ip_info.ip));
+        ESP_LOGI(TCP_CLIENT, "Start traffic!");
+        xTaskCreatePinnedToCore(tcp_send, "send_tcp_hello", 4096, NULL, 1, NULL, 0);
     } else {
         ESP_LOGI(STA_WIFI, "no action for this event_id");
     }
