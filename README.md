@@ -1,5 +1,5 @@
 # esp32_ota_ex
-test esp32_ota for a friend!! ;)
+test esp32_ota for an other project ;)
 
 ### plan v0.1:
 
@@ -12,3 +12,20 @@ black: test subject.
 #### the test subject:
 
 the test subject will be a tcp client to my pc's tcp server and send `hello world!` initialy, but after being updated the message will be `OTA Baby!!!`.
+
+
+#### Steps to get OTA:
+
+- MenuConfig --> Partition Table --> Partition Table --> Factory App, two OTA definitions
+
+
+#### Run http upload server
+
+Run `python -m http.server 8000` in the directory where you have youre binarie.
+
+```bash
+cd .pio/build/esp32-c6-devkitm-1
+
+python -m http.server 8000
+
+```
