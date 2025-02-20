@@ -16,8 +16,14 @@ the test subject will be a tcp client to my pc's tcp server and send `hello worl
 
 #### Steps to get OTA:
 
-- MenuConfig --> Partition Table --> Partition Table --> Factory App, two OTA definitions
+##### config:
 
+- ```. $HOME/.espidf/v5.4/esp-idf/export.sh```
+
+- idf.py menuconfig --> Partition Table --> Partition Table --> Factory App, two OTA definitions
+- idf.py menuconfig --> ESP HTTPS OTA --> Allow HTTP for OTA (...) == true
+
+##### code:
 
 #### Run http upload server
 
