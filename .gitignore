@@ -56,6 +56,7 @@ dkms.conf
 .vscode*
 
 #Project specific
-/home/loup/Workspace/esp32_ota_ex/nat_ota/ota/main/keys.c
+nat_ota/ota/main/keys.c
+*keys.c
 simple_AP/sdkconfig.esp32-c6-devkitm-1.old
 
