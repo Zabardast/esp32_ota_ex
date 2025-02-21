@@ -35,7 +35,7 @@ void station_got_ip(void* arg, esp_event_base_t event_base, int32_t event_id, vo
         
         ESP_LOGI(STA_WIFI, "new ip : "IPSTR , IP2STR(&ip_event_data->ip_info.ip));
         ESP_LOGI(STA_WIFI, "Start traffic!");
-        // xTaskCreatePinnedToCore(tcp_send, "send_tcp_hello", 4096, NULL, 1, NULL, 0);
+        xTaskCreatePinnedToCore(tcp_send, "send_tcp_hello", 4096, NULL, 1, NULL, 0);
         xTaskCreate(&simple_ota_example_task, "ota_example_task", 8192, NULL, 5, NULL);
     } else {
         ESP_LOGI(STA_WIFI, "no action for this event_id");
@@ -114,6 +114,8 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt)
 
 void simple_ota_example_task()
 {
+    vTaskDelay(3000);
+
     ESP_LOGI(TAG, "Starting OTA example task");
     esp_http_client_config_t config = {
         .url = CONFIG_EXAMPLE_FIRMWARE_UPGRADE_URL,

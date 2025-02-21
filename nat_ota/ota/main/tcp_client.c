@@ -22,7 +22,8 @@ void tcp_send()
     memset(buf, 0, BUFFER_SIZE);
     buf[BUFFER_SIZE - 1] = '\0';
 
-    strncpy(buf, "Hello World!", 13);
+    strncpy(buf, "hello world!", 13);
+    // strncpy(buf, "OTA Baby!!!", 12);
 
     printf("tcp_send: %s\n", buf);
 
@@ -34,7 +35,8 @@ void tcp_send()
     client_addr.sin_port = htons(4242);
 
     // PC ip from esp32 AP is "192.168.4.2" ... not really clean bu good enough for an example.
-    inet_pton(AF_INET, "192.168.4.2", &client_addr.sin_addr);
+    // inet_pton(AF_INET, "192.168.4.2", &client_addr.sin_addr);
+    inet_pton(AF_INET, "10.0.0.218", &client_addr.sin_addr);
 
     if(connect(client_fd, (struct sockaddr *)&client_addr, client_size) < 0)
     {
